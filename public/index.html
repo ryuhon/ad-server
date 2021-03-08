@@ -1,0 +1,49 @@
+<html>
+<head>
+
+</head>
+<body>
+
+
+<script src="//code.jquery.com/jquery-1.11.3.min.js"></script>
+<script>
+
+
+
+    $( document ).ready(function() {
+        adLoad();
+    });
+    function adLoad() {
+        $.ajax({
+            url:'/api/ad',
+            success:function(data){
+                 console.log(data.bannerUrl);
+                var redirectUrl = data.redirectUrl;
+                var aid = data.aid;
+                $("#banner_img").attr("src", data.bannerUrl);
+
+                $( "#banner_img" ).click(function() {
+                    $.ajax({
+                        url: '/api/log/click/' + aid,
+                        success: function (data) {
+
+                        }
+                    });
+                    self.location.href=redirectUrl;
+
+                });
+                $("#banner_img").show();
+                $.ajax({
+                    url: '/api/log/impression/' + aid,
+                    success: function (data) {
+
+                    }
+                });
+            }
+        })
+    }
+
+</script>
+<img id="banner_img" />
+</body>
+</html>

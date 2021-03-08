@@ -1,0 +1,73 @@
+basePath: /
+definitions:
+  main.Ad:
+    properties:
+      aid:
+        type: integer
+      bannerSize:
+        type: integer
+      bannerUrl:
+        type: string
+      impressionTrackingUrl:
+        type: string
+      mid:
+        type: integer
+      redirectUrl:
+        type: string
+      title:
+        type: string
+    type: object
+host: localhost:80
+info:
+  contact: {}
+  description: 광고 딜리버리 서법
+  title: Ad Server
+  version: "1.0"
+paths:
+  /api/ad:
+    get:
+      consumes:
+      - application/json
+      description: 하나의 광고를 가져온다
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Ad'
+      summary: 광고 조회
+      tags:
+      - 광고
+  /api/log/{action}/{aid}:
+    get:
+      consumes:
+      - application/json
+      description: 로깅
+      parameters:
+      - description: 'request , click , impression '
+        in: path
+        name: action
+        required: true
+        type: string
+      - description: Aid
+        in: path
+        name: aid
+        required: true
+        type: integer
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: OK
+          schema:
+            $ref: '#/definitions/main.Ad'
+      summary: 로깅
+      tags:
+      - 로깅
+securityDefinitions:
+  ApiKeyAuth:
+    in: header
+    name: Authorization
+    type: apiKey
+swagger: "2.0"

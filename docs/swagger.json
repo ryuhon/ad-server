@@ -1,0 +1,110 @@
+{
+    "swagger": "2.0",
+    "info": {
+        "description": "광고 딜리버리 서법",
+        "title": "Ad Server",
+        "contact": {},
+        "version": "1.0"
+    },
+    "host": "localhost:80",
+    "basePath": "/",
+    "paths": {
+        "/api/ad": {
+            "get": {
+                "description": "하나의 광고를 가져온다",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "광고"
+                ],
+                "summary": "광고 조회",
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Ad"
+                        }
+                    }
+                }
+            }
+        },
+        "/api/log/{action}/{aid}": {
+            "get": {
+                "description": "로깅",
+                "consumes": [
+                    "application/json"
+                ],
+                "produces": [
+                    "application/json"
+                ],
+                "tags": [
+                    "로깅"
+                ],
+                "summary": "로깅",
+                "parameters": [
+                    {
+                        "type": "string",
+                        "description": "request , click , impression ",
+                        "name": "action",
+                        "in": "path",
+                        "required": true
+                    },
+                    {
+                        "type": "integer",
+                        "description": "Aid",
+                        "name": "aid",
+                        "in": "path",
+                        "required": true
+                    }
+                ],
+                "responses": {
+                    "200": {
+                        "description": "OK",
+                        "schema": {
+                            "$ref": "#/definitions/main.Ad"
+                        }
+                    }
+                }
+            }
+        }
+    },
+    "definitions": {
+        "main.Ad": {
+            "type": "object",
+            "properties": {
+                "aid": {
+                    "type": "integer"
+                },
+                "bannerSize": {
+                    "type": "integer"
+                },
+                "bannerUrl": {
+                    "type": "string"
+                },
+                "impressionTrackingUrl": {
+                    "type": "string"
+                },
+                "mid": {
+                    "type": "integer"
+                },
+                "redirectUrl": {
+                    "type": "string"
+                },
+                "title": {
+                    "type": "string"
+                }
+            }
+        }
+    },
+    "securityDefinitions": {
+        "ApiKeyAuth": {
+            "type": "apiKey",
+            "name": "Authorization",
+            "in": "header"
+        }
+    }
+}
