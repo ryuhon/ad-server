@@ -1,4 +1,4 @@
-FROM golang:1.11.2-alpine as builder
+FROM golang:1.15.3-alpine as builder
 RUN mkdir /usr/local/go/src/github.com
 RUN mkdir /usr/local/go/src/github.com/ryuhon
 RUN mkdir /usr/local/go/src/github.com/ryuhon/ad-server
