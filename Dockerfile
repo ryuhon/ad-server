@@ -5,6 +5,7 @@ RUN mkdir /usr/local/go/src/github.com/ryuhon/ad-server
 WORKDIR /usr/local/go/src/github.com/ryuhon/ad-server
 COPY . /usr/local/go/src/github.com/ryuhon/ad-server
 RUN apk update && apk upgrade && apk add --no-cache bash git openssh
+RUN apk add build-base
 RUN go get github.com/labstack/echo
 RUN go get github.com/go-sql-driver/mysql
 RUN go get github.com/dgrijalva/jwt-go
